@@ -1,5 +1,6 @@
 import enums.ActionLetter;
 import model.*;
+import paymentMethods.CoinAcceptor;
 import util.UniversalArray;
 import util.UniversalArrayImpl;
 
@@ -56,6 +57,7 @@ public class AppRunner {
 
     private void chooseAction(UniversalArray<Product> products) {
         showActions(products);
+        print(" а - Пополнить баланс");
         print(" h - Выйти");
         String action = fromConsole().substring(0, 1);
         try {
@@ -64,7 +66,13 @@ public class AppRunner {
                     coinAcceptor.setAmount(coinAcceptor.getAmount() - products.get(i).getPrice());
                     print("Вы купили " + products.get(i).getName());
                     break;
-                } else if ("h".equalsIgnoreCase(action)) {
+                }  else if ("a".equalsIgnoreCase(action)) {
+                    int sumUp = 100;
+                    coinAcceptor.setAmount(coinAcceptor.getAmount() + sumUp);
+                    System.out.println("Вы пополнили монеты на " + sumUp );
+                    break;
+                }
+                else if ("h".equalsIgnoreCase(action)) {
                     isExit = true;
                     break;
                 }
