@@ -10,7 +10,7 @@ public abstract class MoneyReceiver {
         this.name = name;
     }
 
-    public abstract void startSimulation();
+    public abstract void simulate();
 
     public int getAmount() {
         return amount;

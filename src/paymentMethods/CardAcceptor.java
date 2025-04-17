@@ -12,35 +12,34 @@ public class CardAcceptor extends MoneyReceiver {
 
 
     @Override
-    public void startSimulation() {
+    public void simulate() {
         String numberCard = " ";
         String password = " ";
         try {
-            System.out.println("Введите номер карты. Номер карты может состоять только из чисел");
+            System.out.println("Для покупки товара введите номер карты. Пример: 123456");
             numberCard = fromConsole();
             if (!numberCard.matches(("\\d+"))) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Номер карты может быть только из чисел. Необходимо снова ввести номер карты");
             }
 
             try {
                 System.out.println("Введите пароль от карты, он может состоять только из чисел");
                 password = fromConsole();
                 if (!password.matches(("\\d+"))) {
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException("Проверочный код может быть только из чисел. Нужно снова ввести данные.");
                 }
 
                 System.out.println("Вы успешно прошли авторизацию!");
-                System.out.println("Баланс на сумму: " + this.getAmount());
+                System.out.println("Доступный баланс: " + this.getAmount());
 
-            } catch (IllegalArgumentException e) {
-                System.out.println("Проверочный код может быть только из чисел");
-                startSimulation();
+            } catch (IllegalArgumentException ile) {
+                System.out.println(ile.getMessage());
+                simulate();
             }
 
-
-        } catch (IllegalArgumentException e) {
-            System.out.println("Номер карты может быть только из чисел. Необходимо снова ввести номер карты");
-            startSimulation();
+        } catch (IllegalArgumentException ile) {
+            System.out.println(ile.getMessage());
+            simulate();
         }
 
 

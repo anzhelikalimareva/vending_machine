@@ -64,7 +64,7 @@ public class AppRunner {
     }
 
     private void startSimulation() {
-        moneyReceiver.startSimulation();
+        moneyReceiver.simulate();
 
         print("В автомате доступны:");
         showProducts(products);
