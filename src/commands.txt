@@ -1,0 +1,4 @@
+Commands:
+git status
+git pull
+git push
