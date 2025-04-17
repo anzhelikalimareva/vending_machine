@@ -1,5 +1,6 @@
 import enums.ActionLetter;
 import model.*;
+import paymentMethods.CardAcceptor;
 import paymentMethods.CoinAcceptor;
 import paymentMethods.MoneyReceiver;
 import util.UniversalArray;
@@ -12,7 +13,7 @@ public class AppRunner {
 
     private final UniversalArray<Product> products = new UniversalArrayImpl<>();
 
-    private final MoneyReceiver moneyReceiver;
+    private MoneyReceiver moneyReceiver;
 
     private static boolean isExit = false;
 
@@ -25,9 +26,32 @@ public class AppRunner {
                 new Mars(ActionLetter.F, 80),
                 new Pistachios(ActionLetter.G, 130)
         });
+            chooseAcceptor();
+    }
 
-        //нужно поменять на другой деньгоприемник при проверки
-        moneyReceiver = new CoinAcceptor(100);
+    public void chooseAcceptor() {
+        print("Выберите деньгоприменик:");
+        print("а - Картоприменик");
+        print("b - Монетоприменик");
+        String action = fromConsole().substring(0, 1);
+
+        try {
+            if ("a".equalsIgnoreCase(action)) {
+                print("Вы выбрали - Картоприменик");
+                moneyReceiver = new CardAcceptor(100);
+            }
+            else if ("b".equalsIgnoreCase(action)) {
+                print("Вы выбрали - Монетоприменик");
+                moneyReceiver = new CoinAcceptor(100);
+            } else {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            print("Недопустимая буква. Попрбуйте еще раз.");
+            chooseAcceptor();
+        }
+
+
     }
 
 

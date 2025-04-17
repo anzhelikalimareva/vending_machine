@@ -11,7 +11,6 @@ public class CoinAcceptor  extends  MoneyReceiver{
 
     @Override
     public void startSimulation() {
-
         System.out.println("Монет на сумму: " + this.getAmount());
 
     }

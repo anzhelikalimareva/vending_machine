@@ -13,7 +13,6 @@ public class CardAcceptor extends MoneyReceiver {
 
     @Override
     public void startSimulation() {
-        System.out.println("Картоприемник: ");
         System.out.println("Введите номер карты");
         String numberCard = sc.nextLine().strip();
 
