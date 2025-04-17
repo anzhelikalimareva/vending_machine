@@ -27,7 +27,7 @@ public class AppRunner {
                 new Mars(ActionLetter.F, 80),
                 new Pistachios(ActionLetter.G, 130)
         });
-            chooseAcceptor();
+        chooseAcceptor();
     }
 
     private void chooseAcceptor() {
@@ -85,7 +85,7 @@ public class AppRunner {
         }
 
         if (moneyReceiver.getAmount() < MIN_AMOUNT) {
-            print("У вас недостаточно денег, пополните баланс");
+            print("У вас недостаточно денег, пополните баланс!");
         }
         return allowProducts;
     }
@@ -94,24 +94,32 @@ public class AppRunner {
         print(" а - Пополнить баланс");
         showActions(products);
         print(" h - Выйти");
-        String action = fromConsole().substring(0, 1);
+
+
         try {
+            String action = fromConsole().substring(0, 1);
+
+            if (action.isBlank()) {
+                throw new StringIndexOutOfBoundsException();
+            }
+
             for (int i = 0; i < products.size(); i++) {
                 if (products.get(i).getActionLetter().equals(ActionLetter.valueOf(action.toUpperCase()))) {
                     moneyReceiver.setAmount(moneyReceiver.getAmount() - products.get(i).getPrice());
                     print("Вы купили " + products.get(i).getName());
                     break;
                 }
-             }
-                if ("a".equalsIgnoreCase(action)) {
-                    moneyReceiver.setAmount(moneyReceiver.getAmount() + INCREASE_AMOUNT);
-                    print("Вы пополнили баланс на " + INCREASE_AMOUNT );
-                }
-                else if ("h".equalsIgnoreCase(action)) {
-                    isExit = true;
-                    print("Вы завершили работу программы");
-                }
-        } catch (IllegalArgumentException e) {
+            }
+
+            if ("a".equalsIgnoreCase(action)) {
+                moneyReceiver.setAmount(moneyReceiver.getAmount() + INCREASE_AMOUNT);
+                print("Вы пополнили баланс на " + INCREASE_AMOUNT);
+            } else if ("h".equalsIgnoreCase(action)) {
+                isExit = true;
+                print("Вы завершили работу программы");
+            }
+
+        } catch (StringIndexOutOfBoundsException | IllegalArgumentException s) {
             print("Недопустимая буква. Попрбуйте еще раз.");
             chooseAction(products);
         }
