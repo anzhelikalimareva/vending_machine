@@ -7,13 +7,15 @@ public class CoinAcceptor  extends  MoneyReceiver{
         super(amount, "CoinAcceptor");
     }
 
-    public int getAmount() {
-        return amount;
+
+
+    @Override
+    public void startSimulation() {
+
+        System.out.println("Монет на сумму: " + this.getAmount());
+
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
 
     @Override
     public boolean pay(int sum) {

@@ -10,7 +10,16 @@ public abstract class MoneyReceiver {
         this.name = name;
     }
 
+    public abstract void startSimulation();
+
     public abstract boolean pay(int sum);
 
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 }
