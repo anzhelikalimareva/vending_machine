@@ -9,7 +9,8 @@ import util.UniversalArrayImpl;
 import java.util.Scanner;
 
 public class AppRunner {
-    private final int MIN_AMOUNT = 25;
+    private final int MIN_AMOUNT = 20;
+    private final int INCREASE_AMOUNT = 100;
 
     private final UniversalArray<Product> products = new UniversalArrayImpl<>();
 
@@ -83,7 +84,7 @@ public class AppRunner {
             }
         }
 
-        if (moneyReceiver.getAmount() <= MIN_AMOUNT) {
+        if (moneyReceiver.getAmount() < MIN_AMOUNT) {
             print("У вас недостаточно денег, пополните баланс");
         }
         return allowProducts;
@@ -103,9 +104,8 @@ public class AppRunner {
                 }
              }
                 if ("a".equalsIgnoreCase(action)) {
-                    int sumUp = 100;
-                    moneyReceiver.setAmount(moneyReceiver.getAmount() + sumUp);
-                    print("Вы пополнили баланс на " + sumUp );
+                    moneyReceiver.setAmount(moneyReceiver.getAmount() + INCREASE_AMOUNT);
+                    print("Вы пополнили баланс на " + INCREASE_AMOUNT );
                 }
                 else if ("h".equalsIgnoreCase(action)) {
                     isExit = true;
