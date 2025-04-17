@@ -29,7 +29,7 @@ public class AppRunner {
             chooseAcceptor();
     }
 
-    public void chooseAcceptor() {
+    private void chooseAcceptor() {
         print("Выберите деньгоприменик:");
         print("а - Картоприменик");
         print("b - Монетоприменик");
@@ -50,7 +50,6 @@ public class AppRunner {
             print("Недопустимая буква. Попрбуйте еще раз.");
             chooseAcceptor();
         }
-
 
     }
 

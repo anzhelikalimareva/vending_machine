@@ -3,7 +3,7 @@ package paymentMethods;
 import java.util.Scanner;
 
 public class CardAcceptor extends MoneyReceiver {
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
 
     public CardAcceptor(int amount) {
@@ -24,12 +24,4 @@ public class CardAcceptor extends MoneyReceiver {
 
     }
 
-    @Override
-    public boolean pay(int sum) {
-        if (sum <= amount) {
-            amount -= sum;
-            return true;
-        }
-        return false;
-    }
 }

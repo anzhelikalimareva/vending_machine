@@ -12,9 +12,6 @@ public abstract class MoneyReceiver {
 
     public abstract void startSimulation();
 
-    public abstract boolean pay(int sum);
-
-
     public int getAmount() {
         return amount;
     }

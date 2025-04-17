@@ -15,13 +15,4 @@ public class CoinAcceptor  extends  MoneyReceiver{
 
     }
 
-
-    @Override
-    public boolean pay(int sum) {
-        if (sum <= amount) {
-            amount -= sum;
-            return true;
-        }
-        return false;
-    }
 }
